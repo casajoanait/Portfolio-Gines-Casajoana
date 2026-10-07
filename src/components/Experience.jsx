@@ -224,11 +224,16 @@ export default function Experience() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+                <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
                   <span className="text-slate-400">Diplomatura Técnica</span>
-                  <span className="text-sky-400 font-bold flex items-center gap-1">
-                    <Award size={14} className="text-sky-400" /> Certificación UTN
-                  </span>
+                  <a 
+                    href="https://validator.centrodeelearning.com/validator/b7JkkhidQ7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sky-400 hover:text-sky-300 bg-sky-950/50 hover:bg-sky-900/60 border border-sky-500/40 px-3 py-1 rounded-sm transition-colors font-bold"
+                  >
+                    <Award size={14} className="text-sky-400" /> Verificar Certificado ↗
+                  </a>
                 </div>
               </div>
 
@@ -239,4 +244,4 @@ export default function Experience() {
       </div>
     </section>
   );
-} 
+}

@@ -5,15 +5,18 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from
 import { 
   Mail, ExternalLink, Copy, Check, MapPin, 
   MessageCircle, Terminal, FileText, Download, 
-  Sparkles, Maximize2, X, FileCheck, ArrowUpRight 
+  Sparkles, Maximize2, X, FileCheck, ArrowUpRight,
+  ShieldCheck, Activity, Clock
 } from 'lucide-react';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [cvModalOpen, setCvModalOpen] = useState(false);
+  
   const email = "casajoanait@gmail.com";
+  const cvPath = "/Curriculum Vitae Gines Casajoana.pdf";
 
-  // FÍSICAS DE MOVIMIENTO MOUSE (CARD 3D EFFECT)
+  // FÍSICAS DE MOVIMIENTO MOUSE (CARDS 3D EFFECT)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -21,8 +24,8 @@ export default function Contact() {
   const dx = useSpring(mouseX, springConfig);
   const dy = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(dy, [-200, 200], [6, -6]);
-  const rotateY = useTransform(dx, [-200, 200], [-6, 6]);
+  const rotateX = useTransform(dy, [-250, 250], [7, -7]);
+  const rotateY = useTransform(dx, [-250, 250], [-7, 7]);
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -44,11 +47,11 @@ export default function Contact() {
       className="py-28 bg-[#030712] relative overflow-hidden border-t border-violet-900/40"
     >
       
-      {/* Luces tácticas de fondo */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-violet-600/10 blur-[180px] rounded-full pointer-events-none"></div>
-      <div className="absolute bottom-0 right-10 w-[400px] h-[400px] bg-sky-500/10 blur-[180px] rounded-full pointer-events-none"></div>
+      {/* Halos de luz tácticos e iluminación ambiental */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-violet-600/10 blur-[190px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-0 right-10 w-[450px] h-[450px] bg-sky-500/10 blur-[180px] rounded-full pointer-events-none"></div>
 
-      <div className="max-w-[1240px] mx-auto px-6 sm:px-10 relative z-10">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-10 relative z-10 space-y-16">
         
         {/* ENCABEZADO DE SECCIÓN */}
         <motion.div 
@@ -56,9 +59,9 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
+          className="text-center max-w-3xl mx-auto space-y-4"
         >
-          <div className="inline-flex items-center gap-2 border border-sky-500/30 bg-sky-950/30 text-sky-300 px-4 py-1.5 text-xs font-mono tracking-widest uppercase rounded-sm mb-2 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+          <div className="inline-flex items-center gap-2 border border-sky-500/30 bg-sky-950/40 text-sky-300 px-4 py-1.5 text-xs font-mono tracking-widest uppercase rounded-sm shadow-[0_0_15px_rgba(56,189,248,0.2)]">
             <Sparkles className="text-sky-400" size={14} /> Canal de Comunicación Directo & Documentación
           </div>
           
@@ -67,14 +70,14 @@ export default function Contact() {
           </h2>
           
           <p className="text-slate-400 font-light text-sm sm:text-base leading-relaxed">
-            Actualmente radicado en Pilar, Buenos Aires. Abierto a oportunidades como pasante o desarrollador junior para aportar valor en ingeniería y desarrollo de software.
+            Actualmente radicado en Pilar, Buenos Aires. Disponible para posiciones de pasantía o desarrollador Trainee/Junior en Ingeniería Informática y Backend.
           </p>
         </motion.div>
 
-        {/* GRILLA PRINCIPAL DE TRES BLOQUES DE IMPACTO */}
+        {/* GRILLA PRINCIPAL DE 3 BLOQUES DE IMPACTO */}
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* BLOQUE 1: VISOR INTERNO DE CV (CON FORMATO MATCH PROYECTO) */}
+          {/* BLOQUE 1: VISOR INTERNO DE CV (5 COLUMNAS) */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -82,71 +85,82 @@ export default function Contact() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5 bg-[#080C16] border border-violet-800/60 hover:border-sky-500/60 transition-all duration-300 rounded-sm p-6 space-y-5 shadow-2xl flex flex-col justify-between relative group"
           >
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-violet-600 via-sky-400 to-emerald-400"></div>
+
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
-                <span className="text-xs font-mono text-sky-400 uppercase tracking-widest flex items-center gap-2">
+                <span className="text-xs font-mono text-sky-400 uppercase tracking-widest flex items-center gap-2 font-bold">
                   <FileText className="text-sky-400" size={15} /> Documentación de Perfil
                 </span>
                 
                 {/* BOTÓN MAXIMIZAR */}
                 <button 
+                  type="button"
                   onClick={() => setCvModalOpen(true)}
                   className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/40 text-amber-400 hover:bg-amber-500/20 text-[10px] font-mono rounded-xs transition-colors"
                 >
-                  <Maximize2 size={12} /> Maximizar CV
+                  <Maximize2 size={12} /> Inspeccionar
                 </button>
               </div>
 
               <div>
                 <h3 className="text-xl font-bold text-slate-100 font-serif">Curriculum Vitae Oficial</h3>
-                <p className="text-xs font-mono text-violet-300 mt-0.5">Ginés Eloy Casajoana Crifasi // 2026</p>
+                <p className="text-xs font-mono text-violet-300 mt-0.5">Ginés Eloy Casajoana Crifasi // Formato ATS</p>
               </div>
 
-              {/* MUESTRA INTERNA DE INSPECCIÓN */}
+              {/* CARD DE INSPECCIÓN RÁPIDA DENTRO DEL COMPONENTE */}
               <div 
                 onClick={() => setCvModalOpen(true)}
-                className="bg-[#030712] border border-slate-800 hover:border-sky-500/50 rounded-sm p-4 space-y-3 cursor-pointer group/card transition-all relative overflow-hidden"
+                className="bg-[#030712] border border-slate-800 hover:border-sky-500/50 rounded-sm p-4 space-y-3 cursor-pointer group/card transition-all relative overflow-hidden shadow-inner"
               >
-                <div className="absolute top-2 right-2 text-[10px] font-mono text-sky-400 bg-sky-950/60 border border-sky-800/60 px-2 py-0.5 rounded-xs">
-                  INSPECT // LIVE
+                <div className="absolute top-2 right-2 text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded-xs flex items-center gap-1">
+                  <ShieldCheck size={12} /> VERIFICADO
                 </div>
 
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 bg-violet-950/50 border border-violet-800/60 text-sky-400 rounded-xs">
-                    <FileCheck size={20} />
+                    <FileCheck size={22} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-100 font-mono">CV_Gines_Casajoana.pdf</p>
-                    <p className="text-[10px] font-mono text-slate-500">Documento Oficial Auditado</p>
+                    <p className="text-xs font-bold text-slate-100 font-mono truncate max-w-[200px]">Curriculum Vitae Gines Casajoana.pdf</p>
+                    <p className="text-[10px] font-mono text-slate-500">Documento PDF Interactivo</p>
                   </div>
                 </div>
 
-                <div className="space-y-1.5 pt-1 border-t border-slate-900 font-mono text-[11px] text-slate-400">
-                  <p className="text-slate-300 font-bold">• 3.er Año Ing. Informática (USAL)</p>
-                  <p className="text-slate-300 font-bold">• Diplomatura Python (UTN.BA)</p>
-                  <p className="text-slate-400 text-[10px]">• C#, ASP.NET, SQL Relacional, Git & GitHub</p>
+                <div className="space-y-1.5 pt-2 border-t border-slate-900 font-mono text-[11px] text-slate-400">
+                  <p className="text-slate-200 font-bold">• 3.er Año Ingeniería Informática (USAL)</p>
+                  <p className="text-slate-200 font-bold">• Diplomatura en Python (UTN.BA)</p>
+                  <p className="text-slate-400 text-[10px]">• Python, C#, ASP.NET, SQL Server, n8n, Playwright</p>
                 </div>
 
                 <div className="pt-2 text-[10px] font-mono text-sky-400 flex items-center justify-between group-hover/card:text-amber-400 transition-colors">
-                  <span>Haz clic para abrir visor de pantalla completa</span>
+                  <span>Haz clic para desplegar visor interno</span>
                   <ArrowUpRight size={13} />
                 </div>
               </div>
             </div>
 
-            {/* BOTÓN DESCARGA DIRECTA */}
-            <div className="pt-2">
-              <a 
-                href="/CV_Gines_Casajoana.pdf" 
-                download="CV_Gines_Casajoana.pdf"
-                className="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3 bg-gradient-to-r from-violet-600 via-indigo-600 to-sky-500 text-white font-bold font-mono text-xs tracking-[0.15em] uppercase rounded-sm shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all duration-300"
+            {/* ACCIONES DEL CV */}
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <button 
+                type="button"
+                onClick={() => setCvModalOpen(true)}
+                className="w-full inline-flex items-center justify-center gap-2 px-3 py-3 bg-[#030712] hover:bg-slate-900 text-sky-300 border border-sky-500/40 text-xs font-mono rounded-sm transition-colors"
               >
-                <Download size={15} /> Descargar Archivo PDF
+                <Maximize2 size={14} /> Inspeccionar
+              </button>
+
+              <a 
+                href={cvPath} 
+                download="Curriculum Vitae Gines Casajoana.pdf"
+                className="w-full inline-flex items-center justify-center gap-2 px-3 py-3 bg-gradient-to-r from-violet-600 via-indigo-600 to-sky-500 text-white font-bold font-mono text-xs tracking-wider uppercase rounded-sm shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] transition-all"
+              >
+                <Download size={14} /> Bajar PDF
               </a>
             </div>
           </motion.div>
 
-          {/* BLOQUE 2: TERMINAL DE ESTADO CON FÍSICAS 3D (3 COLUMNAS) */}
+          {/* BLOQUE 2: TERMINAL DE TELEMETRÍA Y ESTADO CON FÍSICAS 3D (3 COLUMNAS) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -169,33 +183,35 @@ export default function Contact() {
                 <div>
                   <span className="text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">// UBICACIÓN</span>
                   <span className="text-slate-200 flex items-center gap-2 font-bold">
-                    <MapPin className="text-sky-400" size={14} /> Pilar, Bs. As.
+                    <MapPin className="text-sky-400" size={14} /> Pilar, Buenos Aires
                   </span>
                 </div>
 
                 <div>
                   <span className="text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">// DISPONIBILIDAD</span>
                   <span className="text-sky-300 font-bold bg-sky-950/50 border border-sky-800/60 px-2 py-1 rounded-sm inline-block">
-                    Pasantías / Jr Dev
+                    Pasantía / Jr Dev
                   </span>
                 </div>
 
                 <div>
                   <span className="text-slate-500 block mb-1 uppercase tracking-wider text-[10px]">// MODALIDAD</span>
                   <span className="text-slate-300 text-[11px] block leading-relaxed">
-                    Presencial / Híbrido / Remoto
+                    Presencial (Zona Norte / CABA) / Híbrido / Remoto
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono">
-              <span className="text-slate-500">Respuesta:</span>
+              <span className="text-slate-500 flex items-center gap-1">
+                <Clock size={12} className="text-amber-400" /> Respuesta:
+              </span>
               <span className="text-amber-400 font-bold">&lt; 2 Horas</span>
             </div>
           </motion.div>
 
-          {/* BLOQUE 3: CANALES DE CONTACTO DIRECTO (4 COLUMNAS) */}
+          {/* BLOQUE 3: CANALES DE COMUNICACIÓN DIRECTA (4 COLUMNAS) */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -203,7 +219,7 @@ export default function Contact() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-4 space-y-4 flex flex-col justify-between"
           >
-            {/* BOTÓN 1: MAIL CON BOTÓN DE COPIADO */}
+            {/* BOTÓN 1: EMAIL CON COPIADO RÁPIDO */}
             <div className="relative group space-y-2">
               <label className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">
                 // CORREO ELECTRÓNICO OFICIAL
@@ -218,6 +234,7 @@ export default function Contact() {
                 </a>
 
                 <button 
+                  type="button"
                   onClick={handleCopyEmail}
                   className="bg-[#080C16] hover:bg-violet-950/40 border border-violet-800/60 hover:border-sky-500/60 text-slate-200 px-4 py-3.5 rounded-sm flex items-center justify-center gap-2 text-xs font-mono transition-colors shrink-0"
                   title="Copiar email"
@@ -283,7 +300,9 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* MODAL HOLOGRÁFICO EN PANTALLA COMPLETA */}
+      {/* =========================================================
+          MODAL HOLOGRÁFICO DE INSPECCIÓN EN PANTALLA COMPLETA
+         ========================================================= */}
       <AnimatePresence>
         {cvModalOpen && (
           <motion.div 
@@ -304,32 +323,33 @@ export default function Contact() {
               <div className="p-4 bg-[#030712] border-b border-slate-800 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-mono text-sky-400 font-bold uppercase tracking-widest flex items-center gap-2">
-                    <FileText size={16} /> Visor Holográfico de Documento // CV_Gines_Casajoana.pdf
+                    <FileText size={16} /> Visor Holográfico // Curriculum Vitae Gines Casajoana.pdf
                   </span>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <a 
-                    href="/CV_Gines_Casajoana.pdf" 
-                    download="CV_Gines_Casajoana.pdf"
-                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold rounded-xs transition-colors"
+                    href={cvPath} 
+                    download="Curriculum Vitae Gines Casajoana.pdf"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold rounded-xs transition-colors"
                   >
                     <Download size={13} /> Descargar PDF
                   </a>
 
                   <button 
+                    type="button"
                     onClick={() => setCvModalOpen(false)}
-                    className="p-1 text-slate-400 hover:text-white bg-slate-900 border border-slate-800 rounded-xs transition-colors"
+                    className="p-1.5 text-slate-400 hover:text-white bg-slate-900 border border-slate-800 rounded-xs transition-colors"
                   >
                     <X size={18} />
                   </button>
                 </div>
               </div>
 
-              {/* CONTENIDO DEL PDF EMBEBIDO */}
+              {/* CONTENIDO DEL PDF EMBEBIDO DENTRO DE LA PÁGINA */}
               <div className="flex-1 bg-slate-950 p-2 relative overflow-hidden">
                 <iframe 
-                  src="/CV_Gines_Casajoana.pdf" 
+                  src={cvPath} 
                   className="w-full h-full rounded-xs border border-slate-800"
                   title="Curriculum Vitae Ginés Casajoana"
                 />
@@ -337,7 +357,7 @@ export default function Contact() {
 
               {/* PIE DEL MODAL */}
               <div className="p-3 bg-[#030712] border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>Pulsa ESC o clic afuera para cerrar el visor</span>
+                <span>Presiona ESC o clic afuera para cerrar el visor</span>
                 <span className="text-sky-400 font-bold">GINÉS CASAJOANA // INGENIERÍA INFORMÁTICA</span>
               </div>
             </motion.div>

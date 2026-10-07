@@ -89,10 +89,10 @@ export default function Hero() {
             {/* BOTONES DE ACCIÓN (CTAs DIRECTOS) */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               
-              {/* DESCARGAR CV */}
+              {/* DESCARGAR CV ACTUALIZADO */}
               <a 
-                href="/CV_Gines_Casajoana.pdf" 
-                download="CV_Gines_Casajoana.pdf"
+                href="/Curriculum Vitae Gines Casajoana.pdf" 
+                download="Curriculum Vitae Gines Casajoana.pdf"
                 className="inline-flex items-center justify-center gap-3 px-7 py-4 bg-gradient-to-r from-violet-600 via-indigo-600 to-sky-500 text-white font-bold font-mono text-xs tracking-[0.2em] uppercase rounded-sm shadow-[0_0_25px_rgba(124,58,237,0.4)] hover:shadow-[0_0_40px_rgba(56,189,248,0.6)] hover:scale-[1.02] transition-all duration-300"
               >
                 <Download size={16} /> Descargar CV
